@@ -34,6 +34,24 @@ const onClicked = () => {
     addTarget.appendChild(backButton);
 
     document.getElementById("complete-list").appendChild(addTarget);
+
+    backButton.addEventListener("click", () => {
+      deleteFromCompleteList(backButton.parentNode);
+
+      const backTarget = backButton.parentNode;
+      const backText = backTarget.firstElementChild.innerText;
+
+      backTarget.textContent = null;
+
+      const li = document.createElement("li");
+      li.innerText = backText;
+
+      backTarget.appendChild(li);
+      backTarget.appendChild(completeButton);
+      backTarget.appendChild(deleteButton);
+
+      addToIncompleteList(backTarget);
+    });
   });
 
   const deleteButton = document.createElement("button");
@@ -53,4 +71,12 @@ document
 
 const deleteFromIncompleteList = (target) => {
   document.getElementById("incomplete-list").removeChild(target);
+};
+
+const deleteFromCompleteList = (target) => {
+  document.getElementById("complete-list").removeChild(target);
+};
+
+const addToIncompleteList = (target) => {
+  document.getElementById("incomplete-list").appendChild(target);
 };
