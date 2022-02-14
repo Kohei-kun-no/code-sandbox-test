@@ -1,82 +1,51 @@
-import "./styles.css";
+/////////////////////////
+//filter
+/////////////////////////
 
-const onClicked = () => {
-  const inputText = document.getElementById("add-text").value;
-  document.getElementById("add-text").value = "";
+// var products = [
+//   { name: "きゅうり", type: "野菜", quantity: 4, price: 10 },
+//   { name: "バナナ", type: "フルーツ", quantity: 1, price: 20 },
+//   { name: "セロリ", type: "野菜", quantity: 5, price: 30 },
+//   { name: "オレンジ", type: "フルーツ", quantity: 6, price: 40 }
+// ];
 
-  const div = document.createElement("div");
-  div.className = "list-row";
+// var filteredProducts = [];
 
-  const li = document.createElement("li");
-  li.innerText = inputText;
+// for (var i = 0; i < products.length; i++) {
+//   if (products[i].type === "フルーツ") {
+//     filteredProducts.push(products[i]);
+//   }
+// }
 
-  div.appendChild(li);
+// console.log(filteredProducts);
 
-  document.getElementById("incomplete-list").appendChild(div);
+// products.filter(function(product) {
+//   return product.type === 'フルーツ';
+// });
 
-  const completeButton = document.createElement("button");
-  completeButton.innerText = "完了";
-  completeButton.addEventListener("click", () => {
-    deleteFromIncompleteList(completeButton.parentNode);
+//種類が野菜で、量が0個より多くて、値段が２０より大きい
 
-    const addTarget = completeButton.parentNode;
-    const text = addTarget.firstElementChild.innerText;
+// products.filter(function (product) {
+//   return product.type === "野菜" && product.quantity > 0 && product.price > 20;
+// });
 
-    addTarget.textContent = null;
+////////////////////////
 
-    const li = document.createElement("li");
-    li.innerText = text;
+var post = { id: 4, title: "初めての投稿" };
+var comments = [
+  { postId: 4, content: "いい記事ですね" },
+  { postId: 3, content: "勉強になりました" },
+  { postId: 4, content: "なるほど" }
+];
 
-    const backButton = document.createElement("button");
-    backButton.innerText = "戻す";
-
-    addTarget.appendChild(li);
-    addTarget.appendChild(backButton);
-
-    document.getElementById("complete-list").appendChild(addTarget);
-
-    backButton.addEventListener("click", () => {
-      deleteFromCompleteList(backButton.parentNode);
-
-      const backTarget = backButton.parentNode;
-      const backText = backTarget.firstElementChild.innerText;
-
-      backTarget.textContent = null;
-
-      const li = document.createElement("li");
-      li.innerText = backText;
-
-      backTarget.appendChild(li);
-      backTarget.appendChild(completeButton);
-      backTarget.appendChild(deleteButton);
-
-      addToIncompleteList(backTarget);
-    });
+function commentsForPost(post, comments) {
+  return comments.filter(function (comment) {
+    return comment.postId === post.id;
   });
+}
 
-  const deleteButton = document.createElement("button");
-  deleteButton.innerText = "削除";
-  deleteButton.addEventListener("click", () => {
-    deleteFromIncompleteList(deleteButton.parentNode);
-  });
+console.log(commentsForPost(post, comments));
 
-  div.appendChild(li);
-  div.appendChild(completeButton);
-  div.appendChild(deleteButton);
-};
+////////////////////////////
 
-document
-  .getElementById("add-button")
-  .addEventListener("click", () => onClicked());
-
-const deleteFromIncompleteList = (target) => {
-  document.getElementById("incomplete-list").removeChild(target);
-};
-
-const deleteFromCompleteList = (target) => {
-  document.getElementById("complete-list").removeChild(target);
-};
-
-const addToIncompleteList = (target) => {
-  document.getElementById("incomplete-list").appendChild(target);
-};
+//var numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95];
