@@ -1,51 +1,46 @@
-/////////////////////////
-//filter
-/////////////////////////
+/////////////////////////////////////
+//every some
+/////////////////////////////////////
 
-// var products = [
-//   { name: "きゅうり", type: "野菜", quantity: 4, price: 10 },
-//   { name: "バナナ", type: "フルーツ", quantity: 1, price: 20 },
-//   { name: "セロリ", type: "野菜", quantity: 5, price: 30 },
-//   { name: "オレンジ", type: "フルーツ", quantity: 6, price: 40 }
-// ];
+var users = [
+  { id: 1, admin: false },
+  { id: 2, admin: false },
+  { id: 3, admin: true }
+];
 
-// var filteredProducts = [];
+var admin = users.find(function (user) {
+  return user.admin;
+});
 
-// for (var i = 0; i < products.length; i++) {
-//   if (products[i].type === "フルーツ") {
-//     filteredProducts.push(products[i]);
+console.log(admin);
+
+/////////////////////////////////////////
+
+var computers = [
+  { name: "Apple", ram: 24 },
+  { name: "Compad", ram: 4 },
+  { name: "Acer", ram: 32 }
+];
+
+var allComputersCanRun = true;
+
+var someComputersCanRun = false;
+
+// for(var i = 0; i < computers.length; i ++) {
+//   var computer = computers[i];
+
+//   if(computer.ram < 16) {
+//     allComputersCanRun = false;
+//   } else {
+//     someComputersCanRun = true;
 //   }
 // }
 
-// console.log(filteredProducts);
+// console.log(allComputersCanRun);
+// console.log(someComputersCanRun);
 
-// products.filter(function(product) {
-//   return product.type === 'フルーツ';
-// });
+var result = computers.every(function (computer) {
+  return computer.ram > 16;
+});
 
-//種類が野菜で、量が0個より多くて、値段が２０より大きい
-
-// products.filter(function (product) {
-//   return product.type === "野菜" && product.quantity > 0 && product.price > 20;
-// });
-
-////////////////////////
-
-var post = { id: 4, title: "初めての投稿" };
-var comments = [
-  { postId: 4, content: "いい記事ですね" },
-  { postId: 3, content: "勉強になりました" },
-  { postId: 4, content: "なるほど" }
-];
-
-function commentsForPost(post, comments) {
-  return comments.filter(function (comment) {
-    return comment.postId === post.id;
-  });
-}
-
-console.log(commentsForPost(post, comments));
-
-////////////////////////////
-
-//var numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95];
+console.log(result);
